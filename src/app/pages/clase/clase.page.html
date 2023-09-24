@@ -1,0 +1,108 @@
+<!-- HEADER -->
+<ion-header alt='header'>
+  <ion-toolbar>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="5" class="ion-text-center">
+        <img src="../../../assets/DuocEncabezado.png" alt="LogoDuoc" class="logo">
+      </ion-col>
+      <ion-col size="7" class="ion-text-center">
+        <ion-title class="animated-title">
+          <h1 class="title texto-blanco">Sistema de Asistencia</h1>
+        </ion-title>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<!-- CONTENIDO -->
+<div class="custom-tabs">
+  <a routerLink="/inicio">
+    <ion-icon name="home"></ion-icon>
+    <span>Inicio</span>
+  </a>
+  <a routerLink="/clase">
+    <ion-icon name="analytics"></ion-icon>
+    <span>Mi Clase</span>
+  </a>
+</div>
+
+<ion-content class="fondo">
+  <ion-title class="ion-text-center">
+    <h1 class="texto-blanco">Datos de la Asignatura</h1>
+  </ion-title>
+  <ion-card style="width: 60%;" class="ion-card-centered">
+    <ion-card-content>
+      <table>
+        <tr>
+          <td class="bold">Sede:</td>
+          <td>{{sede}}</td>
+        </tr>
+        <tr>
+          <td class="bold">Sigla:</td>
+          <td>{{idAsignatura}}</td>
+        </tr>
+        <tr>
+          <td class="bold">Sección:</td>
+          <td>{{seccion}}</td>
+        </tr>
+        <tr>
+          <td class="bold">Nombre de asignatura</td>
+          <td>{{nombreAsignatura}}</td>
+        </tr>
+        <tr>
+          <td class="bold">Nombre del profesor</td>
+          <td>{{nombreProfesor}}</td>
+        </tr>
+        <tr>
+          <td class="bold">Día</td>
+          <td>{{dia}}</td>
+        </tr>
+        <tr>
+          <td class="bold">Bloque de inicio</td>
+          <td>{{bloqueInicio}}</td>
+        </tr>
+        <tr>
+          <td class="bold">Bloque de término</td>
+          <td>{{bloqueTermino}}</td>
+        </tr>
+        <tr>
+          <td class="bold">Hora de inicio</td>
+          <td>{{horaInicio}}</td>
+        </tr>
+        <tr>
+          <td class="bold">Hora de fin</td>
+          <td>{{horaFin}}</td>
+        </tr>
+      </table>
+    </ion-card-content>
+  </ion-card>
+
+
+
+<br>
+  <div class="ion-card-centered" style="width: 50%;">
+    <ion-button (click)="limpiarDatos()" class="vertical-center" expand="full" shape="round">
+      Limpiar Datos
+    </ion-button>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="ion-card-centered" style="width: 50%;">
+    <ion-button class="vertical-center" routerLink="/ingreso" expand="full" shape="round">
+      Cerrar Sesión
+    </ion-button>
+  </div>
+
+</ion-content>
+
+<!-- FOOTER -->
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-title class="ion-text-center">
+      Grupo 4 - Sección 001D
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,36 @@
+.vertical-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+header {
+  margin-bottom: 0;
+}
+
+
+.ion-card-centered {
+  margin: 0 auto; /* Esto centrará horizontalmente el ion-card */
+  width: 60%; /* Ajusta el ancho según tus preferencias */
+}
+
+
+ion-content {
+  --background: url('../../../assets/Inicio.jpeg') no-repeat center center;
+  background-size: cover; /* Ajustar la imagen al tamaño del componente */
+  /* Agregar otros estilos según tus necesidades */
+}
+
+.div-transparente {
+  box-shadow: 0 0 0 transparent; 
+  background-color: rgba(255, 0, 0, 0); /* RGBA donde el último valor (0.5) representa la opacidad (50%) */
+}
+
+ion-header {
+  --ion-background-color: rgb(00, 51, 102);
+}
+
+.texto-blanco {
+  color: white
+}
