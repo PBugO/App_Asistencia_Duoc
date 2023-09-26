@@ -38,7 +38,11 @@ const routes: Routes = [
     path: 'incorrecto',
     loadChildren: () => import('./pages/incorrecto/incorrecto.module').then(m => m.IncorrectoPageModule)
   },
-
+  //PAGINA NO ENCONTRADA (DEJAR AL FINAL SIEMPRE)
+  {
+    path: '**',
+    loadChildren: () => import('./pages/desconocido/desconocido.module').then( m => m.DesconocidoPageModule)
+  },
 ];
 
 @NgModule({
