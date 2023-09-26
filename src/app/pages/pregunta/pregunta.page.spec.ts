@@ -11,7 +11,6 @@ describe('PreguntaPage', () => {
     fixture.detectChanges();
   }));
 
-  
   it('should create', () => {
     expect(component).toBeTruthy();
   });
