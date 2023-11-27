@@ -1,0 +1,54 @@
+<div style="width: 80%;" class="ion-card-centered">
+  <br>
+  <h2 class="texto-blanco ion-text-center">Foro de usuarios</h2>
+
+  <a #topOfPage href="#topOfPage"></a>
+  <ion-card class="ion-card-transparente">
+
+    <ion-card-header>
+      <ion-card-title>Ingresa tu publicación</ion-card-title>
+    </ion-card-header>
+
+    <ion-item class="ion-padding-horizontal ">
+      <ion-input [(ngModel)]="publicacion.titulo" label="Título" labelPlacement="floating" id="titulo"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-padding-horizontal">
+      <ion-textarea [(ngModel)]="publicacion.contenido" label="Contenido" labelPlacement="floating"
+        id="contenido"></ion-textarea>
+    </ion-item>
+
+    <div class="alinear-centro">
+      <ion-button (click)="limpiarPublicacion()" id="limpiar">Limpiar</ion-button>
+      <ion-button (click)="guardarPublicacion()" id="guardar">Guardar</ion-button>
+    </div>
+  </ion-card>
+
+
+  <ion-card class="ion-card-transparente">
+    <ion-card class="sin-bordes">
+      <ion-card-title class="con-padding-top">Publicaciones recientes:</ion-card-title>
+    </ion-card>
+
+    <ion-card *ngFor="let pub of publicaciones">
+
+      <ion-card-header>
+        <div > #{{ pub.id }}: {{ pub.titulo }} <br>
+          Autor: {{ pub.nombre }} {{ pub.apellido }}
+        </div>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{ pub.contenido }}
+      </ion-card-content>
+
+      <div class="alinear-derecha">
+        <ion-button (click)="editarPublicacion(pub)" id="editar">Editar
+        </ion-button>
+
+        <ion-button (click)="eliminarPublicacion(pub)" id="eliminar">Borrar
+        </ion-button>
+      </div>
+
+    </ion-card>
+  </ion-card>

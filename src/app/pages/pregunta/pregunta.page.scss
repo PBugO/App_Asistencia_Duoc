@@ -17,7 +17,7 @@ header {
 
 
 ion-content {
-  --background: url('../../../assets/Inicio.jpeg') no-repeat center center;
+  --background: url('../../../assets/Inicio.jpeg') no-repeat center bottom;
   background-size: cover; /* Ajustar la imagen al tamaño del componente */
   /* Agregar otros estilos según tus necesidades */
 }
@@ -33,4 +33,25 @@ ion-header {
 
 .texto-blanco {
   color: white
+}
+
+
+//ANIMACIÓN TITULO
+
+.animated-title {
+  position: relative;
+}
+
+.animated-title h1 {
+  display: inline-block;
+  animation: fade-infinite 3s ease-in-out infinite;
+}
+
+@keyframes fade-infinite {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  30% {
+    opacity: 1;
+  }
 }

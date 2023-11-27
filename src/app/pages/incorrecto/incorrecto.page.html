@@ -2,15 +2,15 @@
 <ion-header alt='header'>
   <ion-toolbar>
     <ion-row class="vertical-center">
-      <ion-col size="5">
+      <ion-col size="6">
         <img src="../../../assets/DuocEncabezado.png" alt="LogoDuoc">
       </ion-col>
     </ion-row>
-    <ion-col class="ion-text-center">
-      <ion-title>
-        <h3 class="texto-blanco">Sistema de Asistencia</h3>
+    <ion-col class="ion-text-center" style="width: 60%;">
+      <ion-title class="animated-title">
+        <h1 class="texto-blanco">Sistema de Asistencia</h1>
       </ion-title>
-    </ion-col>
+    </ion-col>    
   </ion-toolbar>
 </ion-header>
 
@@ -22,10 +22,11 @@
       <h2 class="texto-blanco">Recuperar Contraseña:</h2>
       <br>
       <h3 class="texto-blanco">Lo sentimos, pero los datos ingresados no son los correctos</h3>
+      <br>
       <h3 class="texto-blanco">Intentelo denuevo</h3>
       <br><br><br>
       <div>
-        <ion-button class="vertical-center" routerLink="/ingreso">Iniciar Sesion</ion-button>
+        <ion-button class="vertical-center" (click)="irIniciarSesion()">Volver al Inicio</ion-button>
       </div>
       <br>
     </ion-card>

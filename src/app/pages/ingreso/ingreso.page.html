@@ -2,48 +2,47 @@
 <ion-header alt='header'>
   <ion-toolbar>
     <ion-row class="vertical-center">
-      <ion-col size="5">
+      <ion-col size="6">
         <img src="../../../assets/DuocEncabezado.png" alt="LogoDuoc">
       </ion-col>
     </ion-row>
-    <ion-col class="ion-text-center">
-      <ion-title>
-        <h3 class="texto-blanco">Sistema de Asistencia</h3>
+    <ion-col class="ion-text-center" style="width: 60%;">
+      <ion-title class="animated-title">
+        <h1 class="texto-blanco">Sistema de Asistencia</h1>
       </ion-title>
-    </ion-col>
+    </ion-col>    
   </ion-toolbar>
 </ion-header>
 
 <!-- CONTENIDO -->
 <ion-content class="fondo">
-  <br>
+  <br><br>
   <div class="ion-text-center">
     <ion-card color="light" class="ion-card-centered div-transparente">
 
       <br>
-      <div class="ion-card-centered " style="width: 80%;">
+      <div class="ion-card-centered " style="width: 100%;">
         <ion-item>
-          <ion-label position="floating">Correo</ion-label>
-          <ion-input [(ngModel)]="userEmail" placeholder="nombre.apellido@profesor.duoc.cl"></ion-input>
+          <ion-input [(ngModel)]="correo" type="text" placeHolder="aa.bb@duocuc.cl" label="Correo" labelPlacement="floating" id="correo"></ion-input>
         </ion-item>
         <br>
         <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input [(ngModel)]="userPassword" placeholder="1234" type="password"></ion-input>
+          <ion-input [(ngModel)]="password" type="password" placeHolder="123456" label="Contraseña" labelPlacement="floating" id="password"></ion-input>
         </ion-item>
-        <br>
-        <div class="ion-card-centered" style="width: 50%;">
-
-          <ion-button expand="block" (click)="login()" class="vertical-center">Ingresar</ion-button>
+        <br><br><br>
+        <div class="ion-card-centered" style="width: 60%;">
+          <ion-button expand="block" (click)="ingresar()" class="vertical-center">Ingresar</ion-button>
         </div>
       </div>
-      <br>
+      <br><br><br>
     </ion-card>
   </div>
-  <br>
-  <br>
-  <div class="ion-card-centered" style="width: 50%;">
-    <ion-button class="vertical-center" routerLink="/correo">Recuperar Contraseña</ion-button>
+  <div class="ion-card-centered" style="width: 70%;">
+    <ion-button class="vertical-center" (click)="irARegistrarme()">Registrarme</ion-button>
+  </div>
+  <br><br>
+  <div class="ion-card-centered" style="width: 70%;">
+    <ion-button class="vertical-center" (click)="irARecuperarContrasena()">Recuperar Contraseña</ion-button>
   </div>
 </ion-content>
 

@@ -1,0 +1,60 @@
+.vertical-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header {
+  margin-bottom: 0;
+}
+
+.ion-card-centered {
+  margin: 0 auto; /* Esto centrará horizontalmente el ion-card */
+  width: 58%; /* Ajusta el ancho según tus preferencias */
+}
+
+ion-content {
+  --background: url('../../../assets/Inicio.jpeg') no-repeat center bottom;
+  background-size: cover; /* Ajustar la imagen al tamaño del componente */
+  /* Agregar otros estilos según tus necesidades */
+}
+
+
+.div-transparente {
+  box-shadow: 0 0 0 transparent; 
+  background-color: rgba(255, 0, 0, 0); 
+}
+
+ion-header {
+  --ion-background-color: rgb(00, 51, 102);
+}
+
+.texto-blanco {
+  color: white
+}
+
+
+.div-formulario {
+  background-color: #000000; /* Color de fondo */
+  opacity: 0.9; /* Valor de opacidad (0.0 a 1.0) */
+}
+
+//ANIMACIÓN TITULO
+
+.animated-title {
+  position: relative;
+}
+
+.animated-title h1 {
+  display: inline-block;
+  animation: fade-infinite 3s ease-in-out infinite;
+}
+
+@keyframes fade-infinite {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  30% {
+    opacity: 1;
+  }
+}

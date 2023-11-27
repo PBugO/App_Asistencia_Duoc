@@ -1,0 +1,26 @@
+<div style="width: 75%;" class="ion-card-centered">
+  <br>
+  <h2 class="texto-blanco ion-text-center">Gestión de usuarios</h2>
+
+  <div *ngFor="let usuario of usuarios">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <h4>
+            Usuario: {{ usuario.nombre }} {{ usuario.apellido }} </h4>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <h4>
+          Correo: {{ usuario.correo }}
+        </h4>
+      </ion-card-content>
+
+      <div class="alinear-derecha" *ngIf="usuario.nombre !== 'Admin'">
+        <ion-button (click)="eliminarUsuario(usuario)">Eliminar</ion-button>
+      </div>
+    </ion-card>
+
+  </div>
+</div>

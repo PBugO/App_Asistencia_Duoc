@@ -1,0 +1,56 @@
+<br>
+<h2 class="texto-blanco ion-text-center">Datos de la Asignatura</h2>
+<br>
+<ion-card style="width: 80%;" class="ion-card-centered div-formulario">
+  <ion-card-content >
+    <table>
+      <tr>
+        <td class="bold" style="padding-right: 20px;" style="padding-right: 20px;">Sede:</td>
+        <td>{{asistencia.sede}}</td>
+      </tr>
+      <tr>
+        <td class="bold" style="padding-right: 20px;" style="padding-right: 20px;">Sigla:</td>
+        <td>{{asistencia.idAsignatura}}</td>
+      </tr>
+      <tr>
+        <td class="bold" style="padding-right: 20px;">Sección:</td>
+        <td>{{asistencia.seccion}}</td>
+      </tr>
+      <tr>
+        <td class="bold" style="padding-right: 20px;">Nombre de asignatura</td>
+        <td>{{asistencia.nombreAsignatura}}</td>
+      </tr>
+      <tr>
+        <td class="bold" style="padding-right: 20px;">Nombre del profesor</td>
+        <td>{{asistencia.nombreProfesor}}</td>
+      </tr>
+      <tr>
+        <td class="bold" style="padding-right: 20px;">Día</td>
+        <td>{{asistencia.dia}}</td>
+      </tr>
+      <tr>
+        <td class="bold" style="padding-right: 20px;">Bloque de inicio</td>
+        <td>{{asistencia.bloqueInicio}}</td>
+      </tr>
+      <tr>
+        <td class="bold" style="padding-right: 20px;">Bloque de término</td>
+        <td>{{asistencia.bloqueTermino}}</td>
+      </tr>
+      <tr>
+        <td class="bold" style="padding-right: 20px;" style="padding-right: 20px;">Hora de inicio</td>
+        <td>{{asistencia.horaInicio}}</td>
+      </tr>
+      <tr>
+        <td class="bold" style="padding-right: 20px;" style="padding-right: 20px;">Hora de fin</td>
+        <td>{{asistencia.horaFin}}</td>
+      </tr>
+    </table>
+  </ion-card-content>
+</ion-card>
+<br><br>
+<div class="ion-card-centered" style="width: 50%;">
+  <ion-button (click)="limpiarDatos()" class="vertical-center" expand="full" shape="round">
+    Limpiar Datos
+  </ion-button>
+</div>
+<br><br>

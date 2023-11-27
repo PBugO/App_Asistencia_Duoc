@@ -12,59 +12,46 @@
       </ion-col>
     </ion-row>
   </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="componente_actual" (ngModelChange)="cambiarComponente($event)">
+      <ion-segment-button *ngIf="!esAdmin" value="qr">
+        <ion-label>QR</ion-label>
+      </ion-segment-button>
+      <ion-segment-button *ngIf="!esAdmin" value="miclase">
+        <ion-label>Mi clase</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="foro">
+        <ion-label>Foro</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="misdatos" id="misDatos">
+        <ion-label>Mis datos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button *ngIf="esAdmin" value="admin">
+        <ion-label>Administración</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
 </ion-header>
 
 <!-- CONTENIDO -->
 <ion-content>
-  
-<!-- PESTAÑAS  -->
-<div class="custom-tabs">
-  <a routerLink="/inicio">
-    <ion-icon name="home"></ion-icon>
-    <span>Inicio</span>
-  </a>
-  <a routerLink="/clase">
-    <ion-icon name="analytics"></ion-icon>
-    <span>Mi Clase</span>
-  </a>
-</div>
+  <app-qr [hidden]="esAdmin || componente_actual !== 'qr'" (qrCapturado)="cambiarComponente('miclase')"></app-qr>
+  <app-miclase [hidden]="esAdmin || componente_actual !== 'miclase'"></app-miclase>
+  <app-foro [hidden]="componente_actual !== 'foro'"></app-foro>
+  <app-misdatos [hidden]="componente_actual !== 'misdatos'"></app-misdatos>
+  <app-admin *ngIf="esAdmin" [hidden]="componente_actual !== 'admin'"></app-admin>
 
-  <div class="ion-text-center" style="display: flex; justify-content: center;">
-    <div style="width: 60%;">
-      <h1 class="texto-blanco"> ¡Bienvenid@!</h1>
-      <h2 class="texto-blanco"> {{ usuario.nombre }}</h2>
-      <h5 class="texto-blanco">Escanea el código QR para registrar tu contenido en clases: </h5>
-      <br>
-      <br>
-      <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" expand="full" shape="round">
-        Comenzar escaneo de QR ▣ 
-      </ion-button>
-
-      <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" expand="full" shape="round">
-        Detener escaneo de QR ▣ 
-      </ion-button>
-      <br>
-      <br>
-      <video #video [hidden]="!escaneando" width="80%"></video>
-      <canvas #canvas hidden></canvas>
-      <br>
-      <br>
-      
-      <div class="ion-card-centered" style="width: 100%;">
-        <ion-button class="vertical-center" routerLink="/ingreso" expand="full" shape="round">
-          Cerrar Sesión
-        </ion-button>
-      </div>
-    
-    </div>
-  </div>
 </ion-content>
+
+
 
 <!-- FOOTER -->
 <ion-footer>
-  <ion-toolbar color="light">
-    <ion-title class="ion-text-center">
-      Grupo 4 - Sección 001D
-    </ion-title>
+  <ion-toolbar>
+    <ion-button class="" (click)="salir()" expand="block" fill="clear" shape="round" id="Cerrar Sesión">
+      Cerrar Sesión
+    </ion-button>
   </ion-toolbar>
 </ion-footer>

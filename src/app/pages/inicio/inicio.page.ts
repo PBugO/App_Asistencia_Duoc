@@ -1,186 +1,62 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { QrComponent } from 'src/app/components/qr/qr.component';
+import { MiclaseComponent } from 'src/app/components/miclase/miclase.component';
+import { ForoComponent } from 'src/app/components/foro/foro.component';
+import { MisdatosComponent } from 'src/app/components/misdatos/misdatos.component';
+import { DataBaseService } from 'src/app/services/data-base.service';
+import { APIClientService } from 'src/app/services/apiclient.service';
+import { AdminComponent } from 'src/app/components/admin/admin.component';
 import { Usuario } from 'src/app/model/usuario';
-import { AuthService } from 'src/app/auth.service';
-
-import jsQR, { QRCode } from 'jsqr';
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
+  standalone: true,
+  imports: [IonicModule, CommonModule, FormsModule,
+    QrComponent, MiclaseComponent, ForoComponent, MisdatosComponent, AdminComponent
+  ],
 })
 export class InicioPage implements OnInit {
 
-  @ViewChild('fileinput', { static: false })
-  private fileinput!: ElementRef;
+  componente_actual = 'qr';
+  esAdmin: boolean = false;
+  usuario = new Usuario();
 
-  @ViewChild('video', { static: false })
-  private video!: ElementRef;
+  constructor(
+    private authService: AuthService,
+    private bd: DataBaseService,
+    private api: APIClientService) { }
 
-  @ViewChild('canvas', { static: false })
-  private canvas!: ElementRef;
-
-  usuario: Usuario= new Usuario('','','','','')
-
-  public escaneando = false;
-  public datosQR = '';
-  public loading: HTMLIonLoadingElement | null;
-
-  public bloqueInicio: number = 0;
-  public bloqueTermino: number = 0;
-  public dia: string = '';
-  public horaFin: string = '';
-  public horaInicio: string = '';
-  public idAsignatura: string = '';
-  public nombreAsignatura: string = '';
-  public nombreProfesor: string = '';
-  public seccion: string = '';
-  public sede: string = '';
-  
-  constructor(private router: Router, private loadingController: LoadingController, private authService: AuthService) {
-    this.loading = null;
-  }
-  
   ngOnInit() {
-    this.usuario=this.authService.reconocerUsuario()
-  }
-
-  public obtenerDatosQR(source?: CanvasImageSource): boolean {
-    let w = 0;
-    let h = 0;
-    if (!source) {
-      this.canvas.nativeElement.width = this.video.nativeElement.videoWidth;
-      this.canvas.nativeElement.height = this.video.nativeElement.videoHeight;
-    }
-
-    w = this.canvas.nativeElement.width;
-    h = this.canvas.nativeElement.height;
-
-    const context: CanvasRenderingContext2D = this.canvas.nativeElement.getContext('2d');
-    context.drawImage(source ? source : this.video.nativeElement, 0, 0, w, h);
-    const img: ImageData = context.getImageData(0, 0, w, h);
-    const qrCode: QRCode | null = jsQR(img.data, img.width, img.height, { inversionAttempts: 'dontInvert' });
-    if (qrCode) {
-      this.escaneando = false;
-      this.datosQR = qrCode.data;
-      this.redirigirAOtraPagina(this.datosQR);
-  
-
-    } else {
-      this.datosQR = ''; 
-    }
-
-    return this.datosQR !== '';
-}
-
-public redirigirAOtraPagina(datosQR: string): void {
-  this.router.navigate(['/clase'], {
-    queryParams: { datosQR: datosQR }
-  });
-}
-
-  public mostrarDatosQROrdenados(datosQR: string): void{
-    const objetoDatosQR = JSON.parse(datosQR);
-    this.bloqueInicio = objetoDatosQR.bloqueInicio;
-    this.bloqueTermino = objetoDatosQR.bloqueTermino;
-    this.dia = objetoDatosQR.dia;
-    this.horaFin = objetoDatosQR.horaFin;
-    this.horaInicio = objetoDatosQR.horaInicio;
-    this.idAsignatura = objetoDatosQR.idAsignatura;
-    this.nombreAsignatura = objetoDatosQR.nombreAsignatura
-    this.nombreProfesor = objetoDatosQR.nombreProfesor;
-    this.seccion = objetoDatosQR.seccion;
-    this.sede = objetoDatosQR.sede;
-  }
-
-  public cargarImagenDesdeArchivo(): void{
-    this.fileinput.nativeElement.click();
-  }
-
-  public verificarArchivoConQR(files: FileList): void {
-    const file = files.item(0);
-    if (file) { 
-        const img = new Image();
-        img.onload = () => {
-            this.obtenerDatosQR(img);
-        }
-
-        img.src = URL.createObjectURL(file);
-    }
-}
-
-  public async comenzarEscaneoQR(){
-    //this.limpiarDatos();
-    const mediaProvider: MediaProvider = await navigator.mediaDevices.getUserMedia({
-      video: {facingMode: 'enviroment'}
-    });
-    this.video.nativeElement.srcObject = mediaProvider;
-    this.video.nativeElement.setAttribute('playsinline', 'true');
-    this.loading = await this.loadingController.create({});
-    await this.loading.present();
-    this.video.nativeElement.play();
-    requestAnimationFrame(this.verificarVideo.bind(this));
-  }
-
-  async verificarVideo(){
-    if(this.video.nativeElement.readyState === this.video.nativeElement.HAVE_ENOUGH_DATA){
-      if(this.loading){
-        await this.loading.dismiss();
-        this.loading = null;
-        this.escaneando = true;
-    }
-    if(this.obtenerDatosQR()){
-      console.log('Datos obtenidos');
-    } else {
-      if(this.escaneando){
-        console.log('Escaneando');
-        requestAnimationFrame(this.verificarVideo.bind(this));
+    this.authService.usuarioAutenticado.subscribe((usuario) => {
+      if (usuario && usuario.correo === 'admin') {
+        this.esAdmin = true;
+      } else {
+        this.esAdmin = false;
       }
+    })
+
+    if (this.esAdmin) {
+      this.componente_actual = 'foro';
+    } else {
+      this.componente_actual = 'qr';
     }
-  } else {
-    console.log('Video aun no tiene datos');
-    requestAnimationFrame(this.verificarVideo.bind(this));
+    this.bd.datosQR.next('');
   }
 
-
-  }
-  
-  public detenerEscaneoQR(): void{
-    this.escaneando = false;
-  }
-
-  public limpiarDatos(){
-    this.bloqueInicio = 0;
-    this.bloqueTermino = 0;
-    this.dia = "No hay informacion";
-    this.horaFin = "No hay informacion";
-    this.horaInicio = "No hay informacion";
-    this.idAsignatura = "No hay informacion";
-    this.nombreAsignatura = "No hay informacion";
-    this.nombreProfesor = "No hay informacion";
-    this.seccion ="No hay informacion";
-    this.sede = "No hay informacion" ;
-    (document.getElementById('input-file') as HTMLInputElement).value = '';
+  cambiarComponente(nombreComponente: string) {
+    this.componente_actual = nombreComponente;
+    if (this.componente_actual === 'foro') this.api.cargarPublicaciones();
+    if (this.componente_actual === 'misdatos') this.authService.leerUsuarioAutenticado();
   }
 
-  public handleFileInput(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-    if (inputElement && inputElement.files) {
-        this.verificarArchivoConQR(inputElement.files);
-    }
-}
-  ionViewDidEnter() {
-    const fechaActual = new Date();
-    const horaActual = fechaActual.getHours();
-    const minutosActuales = fechaActual.getMinutes();
-    const segundosActuales = fechaActual.getSeconds();
-
-    const horaElement = document.getElementById('horaActual');
-
-    if (horaElement) {
-      horaElement.textContent = `La hora actual es: ${horaActual}:${minutosActuales}:${segundosActuales}`;
+  salir() {
+    this.authService.logout();
   }
-}
+
 }

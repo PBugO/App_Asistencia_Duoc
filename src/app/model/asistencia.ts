@@ -22,7 +22,6 @@ export class Asistencia {
     this.nombreProfesor = '';
     this.seccion = '';
     this.sede = '';
-
   }
 
   public setAsistencia(
@@ -49,6 +48,23 @@ export class Asistencia {
     this.sede = sede;
   }
 
-
+  obtenerAsistenciaDesdeQR(datosQR: string) {
+    if (this.verificarAsistenciaDesdeQR(datosQR)) {
+      return JSON.parse(datosQR) as Asistencia;
+    }
+    return new Asistencia();
+  }
+  
+  verificarAsistenciaDesdeQR(datosQR: string) {
+    if (datosQR !== '') {
+      try {
+        const json = JSON.parse(datosQR);
+        if (json.bloqueInicio !== undefined) {
+          return true;
+        }
+      } catch(error: any) {}
+    }
+    return false;
+  }
 
 }

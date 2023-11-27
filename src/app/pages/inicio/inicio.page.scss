@@ -1,71 +1,47 @@
-/* Estilos para el contenedor */
-.animated-title {
-  text-align: center; /* Centra el contenido horizontalmente */
-  overflow: hidden; /* Ocultar el desbordamiento de contenido fuera del contenedor */
-  width: 100%; /* Ajusta el ancho según tus necesidades */
-}
-
-/* Estilos para el título */
-.title {
-  position: relative; /* Necesario para animación absoluta */
-  left: -100%; /* Mover el título fuera del área visible (izquierda) */
-  animation: slideIn 3s forwards; /* Nombre de la animación y duración */
-  font-size: 24px; /* Tamaño de fuente del título */
-}
-
-/* Animación */
-@keyframes slideIn {
-  0% {
-    left: -100%; /* Comienza fuera del área visible (izquierda) */
-  }
-  100% {
-    left: 0; /* Finaliza en la posición central */
-  }
-}
-
 ion-content {
   --background: url('../../../assets/QR.jpeg') no-repeat center center;
   background-size: cover; /* Ajustar la imagen al tamaño del componente */
   /* Agregar otros estilos según tus necesidades */
 }
 
-
-.custom-tabs {
-  display: flex;
-  justify-content: center; /* Centra horizontalmente los enlaces */
-  background-color: darkblue; /* Color de fondo de la barra de pestañas */
-  padding: 10px 0; /* Espaciado interno superior e inferior */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
-}
-
-.custom-tabs a {
-  text-decoration: none;
-  color: #fff; /* Color del texto */
-  padding: 10px 20px; /* Espaciado interno izquierdo y derecho */
-  border-radius: 5px; /* Bordes redondeados */
-  margin: 0 10px; /* Espacio horizontal entre enlaces */
-  transition: background-color 0.3s;
-}
-
-.custom-tabs a:hover {
-  background-color: #000; /* Cambio de color al pasar el mouse */
-}
-
-.custom-tabs ion-icon {
-  font-size: 20px; /* Tamaño del ícono */
-  margin-right: 5px; /* Espacio entre el ícono y el texto */
-}
-
-.custom-tabs span {
-  font-weight: bold; /* Texto en negrita */
-}
-
-
 ion-header {
   --ion-background-color: rgb(00, 51, 102);
 }
 
-
 .texto-blanco {
   color: white
+}
+
+ion-segment-button {
+  color: white;
+}
+
+
+ion-label{
+  font-size: 9px;
+
+}
+
+//ANIMACIÓN TITULO
+
+.animated-title {
+  overflow: hidden;
+  position: relative;
+}
+
+.animated-title h1 {
+  display: inline-block;
+  font-size: 18px;
+
+  white-space: nowrap;
+  animation: scroll-infinite 12s linear infinite; /* Ajusta la duración según tus preferencias */
+}
+
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }

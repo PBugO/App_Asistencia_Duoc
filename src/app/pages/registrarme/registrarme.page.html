@@ -1,0 +1,91 @@
+<!-- HEADER -->
+<ion-header alt='header'>
+  <ion-toolbar>
+    <ion-row class="vertical-center">
+      <ion-col size="6">
+        <img src="../../../assets/DuocEncabezado.png" alt="LogoDuoc">
+      </ion-col>
+    </ion-row>
+    <ion-col class="ion-text-center" style="width: 60%;">
+      <ion-title class="animated-title">
+        <h1 class="texto-blanco">Sistema de Asistencia</h1>
+      </ion-title>
+    </ion-col>
+  </ion-toolbar>
+</ion-header>
+
+<!-- CONTENIDO -->
+<ion-content class="fondo">
+  <br>
+  <div class="ion-text-center">
+    <ion-card class="div-transparente">
+      <h1 class="texto-blanco">Registrar Usuario</h1>
+      <h3 class="texto-blanco">Ingresa tus datos correspondientes:</h3>
+      <div>
+
+        <!-- FORMULARIO -->
+        <div class="div-formulario">
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="usuario.correo" label="Correo" labelPlacement="floating"></ion-input>
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="usuario.nombre" label="Nombre" labelPlacement="floating"></ion-input>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="usuario.apellido" label="Apellidos"
+              labelPlacement="floating"></ion-input>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="usuario.preguntaSecreta" label="Pregunta secreta"
+              labelPlacement="floating"></ion-input>
+            <ion-icon name="key-outline" slot="start"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="usuario.respuestaSecreta" label="Respuesta secreta"
+              labelPlacement="floating"></ion-input>
+            <ion-icon name="key-outline" slot="start"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="password" [(ngModel)]="usuario.password" label="Contraseña"
+              labelPlacement="floating"></ion-input>
+            <ion-icon name="key-outline" slot="start"></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="password" [(ngModel)]="repeticionPassword" label="Repetir contraseña"
+              labelPlacement="floating"></ion-input>
+            <ion-icon name="key-outline" slot="start"></ion-icon>
+          </ion-item>
+        </div>
+        <br><br><br>
+        <div class="ion-card-centered" style="width: 50%;">
+          <ion-button class="vertical-center" (click)="registrarUsuario()">
+            Registrarme
+          </ion-button>
+        </div>
+        <br><br>
+        <div class="ion-card-centered" style="width: 80%;">
+          <ion-button class="vertical-center" (click)="salir()">Volver</ion-button>
+          <br><br>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>
+
+<!-- FOOTER -->
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-title class="ion-text-center">
+      Grupo 4 - Sección 001D
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

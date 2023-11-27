@@ -1,7 +1,7 @@
 {
-  "name": "APP_Asistencia_DUOC",
+  "name": "proyectoapp2",
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular-standalone"
 }

@@ -1,0 +1,25 @@
+<div class="ion-text-center" style="display: flex; justify-content: center;">
+  <div style="width: 60%;">
+    <br>
+    <h2 class="texto-blanco"> ¡Bienvenid@! </h2>
+    <h2 class="texto-blanco"> {{ usuario.nombre }} {{ usuario.apellido }}</h2>
+    <h3 class="texto-blanco"> Escanea el código QR para registrar tu asistencia: </h3>
+    <br>
+    <br>
+    <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" expand="full" >
+      Comenzar escaneo de QR <ion-icon name="qr-code-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" expand="full" >
+      Detener escaneo de QR ▣ <ion-icon name="qr-code-outline"></ion-icon>
+    </ion-button>
+    <br>
+    <br>
+    <video #video [hidden]="!escaneando" width="80%"></video>
+    <canvas #canvas hidden></canvas>
+    <br>
+    <br>
+  </div>
+</div>
+
+
