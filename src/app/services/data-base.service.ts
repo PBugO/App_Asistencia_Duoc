@@ -41,15 +41,15 @@ export class DataBaseService {
     // Abrir base de datos
     this.db = await this.sqliteService.abrirBaseDeDatos(this.nombreBD, false, 'no-encryption', 1, false);
 
-    // Para  de prueba descomenta la siguiente línea
-    await this.crearUsuariosDePrueba();
+    // Para crear usuarios de prueba
+    // await this.crearUsuariosDePrueba();
 
     // Cargar la lista de usuarios
     await this.leerUsuarios();
   }
 
   async crearUsuariosDePrueba() {
-    await this.guardarUsuario(Usuario.getUsuario('admin', 'admin', 'Admin', 'istrador', 'Admin', 'Admin', 'N'));
+    await this.guardarUsuario(Usuario.getUsuario('admin@admin.cl', 'admin', 'Admin', 'traidor', 'Admin', 'Admin', 'N'));
     await this.guardarUsuario(Usuario.getUsuario('atorres@duocuc.cl', '1234', 'Ana', 'Torres', 'Nombre de mi mascota', 'gato', 'N'));
     await this.guardarUsuario(Usuario.getUsuario('avalenzuela@duocuc.cl', 'qwer', 'Alberto', 'Valenzuela', 'Mi mejor amigo', 'juanito', 'N'));
     await this.guardarUsuario(Usuario.getUsuario('cfuentes@duocuc.cl', 'asdf', 'Carla', 'Fuentes', 'Dónde nació mamá', 'valparaiso', 'N'));
@@ -130,10 +130,10 @@ export class DataBaseService {
       console.log('Usuario creado exitosamente.');
     } catch (error) {
       console.error('Error al crear usuario:', error);
-      throw error; 
+      throw error;
     }
   }
 
-  
+
 
 }

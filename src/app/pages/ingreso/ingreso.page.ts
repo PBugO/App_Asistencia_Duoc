@@ -5,6 +5,7 @@ import { IonicModule, NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario } from 'src/app/model/usuario';
 import { BehaviorSubject } from 'rxjs';
+import { DataBaseService } from 'src/app/services/data-base.service';
 
 @Component({
   selector: 'app-ingreso',
@@ -21,11 +22,17 @@ export class IngresoPage implements OnInit {
   password = '';
   usuarioAutenticado = new BehaviorSubject<Usuario | null>(null);
 
+  private usuariosDePruebaCreados: boolean = false;
 
 
-  constructor(private authService: AuthService, private navCtrl: NavController) { }
+  constructor(private authService: AuthService, private navCtrl: NavController, private db: DataBaseService) { }
 
   ngOnInit() {
+
+    if (this.usuariosDePruebaCreados === false) {
+      this.db.crearUsuariosDePrueba();
+      this.usuariosDePruebaCreados = true;
+    }
 
     this.usuarioAutenticado.next(null);
 
@@ -35,6 +42,7 @@ export class IngresoPage implements OnInit {
 
   async ingresar() {
     this.authService.login(this.correo, this.password);
+
   }
 
   irARecuperarContrasena() {

@@ -74,16 +74,7 @@ export class ForoComponent implements OnInit  {
     }
   }
 
-  editarPublicacion(pub: any) {
-    if (pub.correo !== this.usuario.correo) {
-      showAlertDUOC('Sólo puede editar las publicaciones a su nombre')
-      return;
-    }
-    this.setPublicacion(pub.id, pub.correo, pub.nombre, pub.apellido, pub.titulo, pub.contenido);
-    this.topOfPage.nativeElement.scrollIntoView({block: 'end', behavior: 'smooth'});
-  }
-
-  mensajePublicacion(accion: string, id: Publicacion) {
+   mensajePublicacion(accion: string, id: Publicacion) {
     showAlertDUOC(`La publicación ${id} fue ${accion} correctamente`);
     this.limpiarPublicacion();
   }
@@ -105,6 +96,16 @@ export class ForoComponent implements OnInit  {
       error: (error) => showAlertError('No fue posible actualizar la publicación.', error)
     });
   }
+
+  editarPublicacion(pub: any) {
+    if (pub.correo !== this.usuario.correo) {
+      showAlertDUOC('Sólo puede editar las publicaciones a su nombre')
+      return;
+    }
+    this.setPublicacion(pub.id, pub.correo, pub.nombre, pub.apellido, pub.titulo, pub.contenido);
+    this.topOfPage.nativeElement.scrollIntoView({block: 'end', behavior: 'smooth'});
+  }
+
 
   eliminarPublicacion(pub: any) {
     if (pub.correo !== this.usuario.correo) {

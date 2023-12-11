@@ -17,7 +17,7 @@
         </h4>
       </ion-card-content>
 
-      <div class="alinear-derecha" *ngIf="usuario.nombre !== 'Admin'">
+      <div class="alinear-derecha" *ngIf="usuario.correo !== 'admin@admin.cl'">
         <ion-button (click)="eliminarUsuario(usuario)">Eliminar</ion-button>
       </div>
     </ion-card>

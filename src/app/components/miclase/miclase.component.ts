@@ -68,10 +68,5 @@ export class MiclaseComponent implements ViewWillEnter {
 
   }
 
-  salir() {
-    this.router.navigate(['/ingreso']).then(() => {
-      location.reload();
-    });
-  }
 
 }

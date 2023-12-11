@@ -36,10 +36,13 @@ export class AuthService {
         await this.bd.validarUsuario(correo, password).then(async (usuario: Usuario | undefined) => {
           if (usuario) {
             showToast(`¡Bienvenido(a) ${usuario.nombre} ${usuario.apellido}!`);
-            this.bd.actualizarSesionActiva(correo, 'S');
-            this.storage.set(this.keyUsuario, usuario);
-            this.usuarioAutenticado.next(usuario);
-            this.router.navigate(['inicio']);
+            setTimeout(() => {
+              this.bd.actualizarSesionActiva(correo, 'S');
+              this.storage.set(this.keyUsuario, usuario);
+              this.usuarioAutenticado.next(usuario);
+              this.router.navigate(['inicio']);
+            }, 2000);
+
           } else {
             showToast(`El correo o contraseña son incorrectos`);
             this.router.navigate(['ingreso']);
@@ -59,9 +62,7 @@ export class AuthService {
           this.bd.actualizarSesionActiva(usuario.correo, 'N');
           this.router.navigate(['ingreso']);
           this.storage.remove(this.keyUsuario);
-          // Recargar la página
-          location.reload();
-        }, 1500);
+        }, 2000);
 
       }
     })

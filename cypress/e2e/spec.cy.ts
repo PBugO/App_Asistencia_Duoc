@@ -12,9 +12,9 @@ describe('Realización de pruebas e2e Cypress', () => {
       cy.get('#password').type('1234');
       cy.contains('Ingresar').click();
       cy.intercept('/inicio').as('route').then(() => {
-        cy.wait(3000);
+        cy.wait(5000);
         cy.contains('Cerrar Sesión').click();
-        cy.wait(3000);
+        cy.wait(5000);
       });
     });
   })
@@ -31,6 +31,7 @@ describe('Realización de pruebas e2e Cypress', () => {
       cy.contains('Ingresar').click();
       cy.wait(3000);
       cy.contains('Grupo 4 - Sección 001D');
+      cy.wait(5000);
     });
   })
 
@@ -44,6 +45,7 @@ describe('Realización de pruebas e2e Cypress', () => {
       cy.get('#password').type('1234');
       cy.contains('Ingresar').click();
       cy.intercept('/inicio').as('route').then(() => {
+        cy.wait(5000);
         cy.get('[ng-reflect-value="foro"]').click();
         cy.get('#titulo').type(`Título de prueba ${numero}`);
         cy.get('#contenido').type(`Contenido de prueba ${numero}`);
@@ -52,9 +54,12 @@ describe('Realización de pruebas e2e Cypress', () => {
         cy.contains('Aceptar').click();
         cy.wait(3000);
         cy.contains(`Título de prueba ${numero}`).should('exist');
-        cy.contains('Cerrar Sesión').click();
         cy.wait(3000);
+        cy.contains('Cerrar Sesión').click();
+        cy.wait(5000);
         cy.contains('Grupo 4 - Sección 001D');
+        cy.wait(5000);
+
       });
     });
   })
@@ -69,15 +74,18 @@ describe('Realización de pruebas e2e Cypress', () => {
       cy.get('#password').type('1234');
       cy.contains('Ingresar').click();
       cy.intercept('/inicio').as('route').then(() => {
+        cy.wait(5000);
         cy.get('[ng-reflect-value="foro"]').click();
         cy.contains('Borrar').click();
         cy.wait(3000);
         cy.contains('Aceptar').click();
         cy.wait(3000);
         cy.contains(`Título de prueba ${numero}`).should('not.exist');
+        cy.wait(3000);
         cy.contains('Cerrar Sesión').click();
         cy.wait(3000);
         cy.contains('Grupo 4 - Sección 001D');
+        cy.wait(5000);
       });
     });
   })
@@ -92,6 +100,7 @@ describe('Realización de pruebas e2e Cypress', () => {
       cy.get('#password').type('1234');
       cy.contains('Ingresar').click();
       cy.intercept('/inicio').as('route').then(() => {
+        cy.wait(5000);
         cy.get('[ng-reflect-value="misdatos"]').click();
         cy.wait(1500);
         //SE LIMPIAN TODOS LOS CAMPOS
@@ -128,10 +137,11 @@ describe('Realización de pruebas e2e Cypress', () => {
         cy.contains('Actualizar').click();
         cy.wait(1500);
         cy.contains('Aceptar').click();
-        cy.wait(1500);
+        cy.wait(5000);
         cy.contains('Cerrar Sesión').click();
-        cy.wait(3000);
+        cy.wait(5000);
         cy.contains('Grupo 4 - Sección 001D');
+        cy.wait(5000);
       });
     });
   })
@@ -147,6 +157,7 @@ describe('Realización de pruebas e2e Cypress', () => {
       cy.get('#password').type('1234');
       cy.contains('Ingresar').click();
       cy.intercept('/inicio').as('route').then(() => {
+        cy.wait(5000);
         cy.get('[ng-reflect-value="misdatos"]').click();
         cy.wait(1500);
         //SE AGREGA SEGUNDO APELLIDO AL ORIGINAL
@@ -158,8 +169,9 @@ describe('Realización de pruebas e2e Cypress', () => {
         cy.get('[ng-reflect-value="qr"]').click();
         cy.wait(3000);
         cy.contains('Cerrar Sesión').click();
-        cy.wait(3000);
+        cy.wait(5000);
         cy.contains('Grupo 4 - Sección 001D');
+        cy.wait(5000);
       });
     });
   })

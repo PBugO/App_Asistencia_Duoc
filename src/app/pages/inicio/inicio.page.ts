@@ -34,7 +34,7 @@ export class InicioPage implements OnInit {
 
   ngOnInit() {
     this.authService.usuarioAutenticado.subscribe((usuario) => {
-      if (usuario && usuario.correo === 'admin') {
+      if (usuario && usuario.correo === 'admin@admin.cl') {
         this.esAdmin = true;
       } else {
         this.esAdmin = false;
@@ -57,6 +57,7 @@ export class InicioPage implements OnInit {
 
   salir() {
     this.authService.logout();
+    
   }
 
 }
